@@ -1,0 +1,9 @@
+Dependencies we need to add
+
+react 
+express
+webpack
+webpack-cli
+react-router
+dotenv
+mongoose
