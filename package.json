@@ -1,28 +1,15 @@
 {
-  "name": "movierecommendationapp",
+  "name": "get-movies",
   "version": "1.0.0",
-  "description": "we finally here XD",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Axolotl-3DS/movierecommendationapp.git"
-  },
-  "author": "Team Axolotl 3DS",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Axolotl-3DS/movierecommendationapp/issues"
-  },
-  "homepage": "https://github.com/Axolotl-3DS/movierecommendationapp#readme",
   "dependencies": {
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.13.5",
-    "react": "^17.0.2",
-    "react-router": "^5.2.0",
-    "webpack": "^5.47.1",
-    "webpack-cli": "^4.7.2"
+    "node-fetch": "^2.6.1"
   }
 }
