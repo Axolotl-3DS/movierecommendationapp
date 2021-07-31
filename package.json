@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Axolotl-3DS/movierecommendationapp#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "html-webpack-plugin": "^5.3.2",
