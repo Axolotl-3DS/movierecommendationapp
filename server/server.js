@@ -14,7 +14,7 @@ app.use('/assets', express.static(path.resolve(__dirname, '../client/assets')));
 app.use('/api', movieRouter);
 app.use('/login', loginRouter);
 
-app.get('/', (req, res) => res.status(200).send('home page route is working'));
+app.get('/home', (req, res) => res.status(200).send('home page route is working'));
 
 app.use((req, res) => res.status(200).send('catch all route is working'));
 
