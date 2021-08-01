@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const MONGO_URI = process.env.mongoose_URL;
+const MONGO_URI = 'mongodb+srv://A3ds:CodesmithAxolotl@cluster0.jy9u7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 mongoose.set('useCreateIndex', true)
 mongoose.connect(MONGO_URI, {

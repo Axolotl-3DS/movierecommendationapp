@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
+import UserTabs from '../components/UserTabs';
 import MovieTile from '../components/MovieTile';
 
 const Home = (props) => {
     // we need states to keep track of which tab we're on - Favorites, Recommendations, or Random
-    const [currentTab, setCurrentTab] = useState({
-        explore: true,
-        favorites: false,
-        recommendations: false,
-        random: false,  
-    });
+    const [currentTab, setCurrentTab] = useState('Explore');
     
     // will need to talk to backend to get us new movies
     const[currentMovies, refreshMovies] = useState({
@@ -17,6 +13,11 @@ const Home = (props) => {
         recommendations: [],
         random: []
     });
+
+    const handleTabs = () => {
+        const selection = document.querySelector('input[name="type"]:checked').value;
+        setCurrentTab(selection);
+    };
 
     // these will the final rendered components
     // const [rendered, updatedRendered] = useState([]);
@@ -32,6 +33,7 @@ const Home = (props) => {
     return (
     <div id="Home">
       <h1> you made it! </h1>
+      <UserTabs handleTabs={handleTabs}/>
       <MovieTile />
       <MovieTile />
       <MovieTile />

@@ -1,3 +1,5 @@
+const regeneratorRuntime = require("regenerator-runtime");
+const axios = require("axios");
 import React, { useState, useEffect } from "react";
 import { ReactDOM } from "react";
 import { unstable_renderSubtreeIntoContainer } from "react-dom";
@@ -23,12 +25,14 @@ function Login() {
 
     // right dummy code for sign in / create account buttons
     // for now, just send us to the home page
-    function onLoginClick() {
-        // check agains the data base if this is a valid username / password pair
-        /** axios.get( backend route );
+    async function onLoginClick() {
+        await axios.post('/login', {
+            username,
+            password,
+          })
             .then ( (res) => {
-                //depends on how it gets assinged in backend
-                if (res === 'success') {
+                console.log(res)
+                if (res.data === 'success') {
                     setIsLoggedIn(true); //redirect us
                 }
                 else {
@@ -37,10 +41,6 @@ function Login() {
                     setFailed(true);
                 }
             })
-         *  */
-        // let's just try to redirect?
-        //console.log("I am running for no reason");
-        setIsLoggedIn(true);
     };
     function onRegisterClick() {
         // check agains the data base if this is a valid username / password pair
