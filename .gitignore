@@ -1,5 +1,5 @@
 #files to ignore
-.env
 node_modules
 package-lock.json
 /build
+.env
