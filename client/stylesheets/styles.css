@@ -42,11 +42,11 @@
 
 #movieBox {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
     justify-items: center;
     text-align: center;
     border: black;
-    gap: 10px;
+    gap: 20px;
 }
 
 /* .tilescontainer {

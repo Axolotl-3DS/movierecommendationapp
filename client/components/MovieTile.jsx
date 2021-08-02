@@ -5,7 +5,7 @@ import axios from 'axios';
 
 function MovieTile (props) {
     // lift state up - pass in as props?
-    console.log(props.props.title);
+    // console.log(props.props.title);
     const { id, title, overview, poster_path } = props.props;
     const [star, setStar] = useState(false);
     const [movieTitle, setMovieTitle] = useState(title);

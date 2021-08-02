@@ -33,15 +33,13 @@ function MovieContainer (props) {
             case 'Recommendations':
               for (let i = 0; i < movies.recommendations.length; i++) {
                 goods.push(<MovieTile className='movieBox' key={i} props={movies.recommendations[i]} />)
-                // console.log(goods);
               };
-            //   console.log('goods',goods);
               break;
             case 'Favorites':
               for (let i = 0; i < 5; i++) {
-                goods.push(<MovieTile key={i} props={movies.favs[i]} />)
-                break;
+                goods.push(<MovieTile className='movieBox' key={i} props={movies.favs[i]} />)
               };
+              break;
           }
           setItems(goods);
           checkSel(currentTab);
