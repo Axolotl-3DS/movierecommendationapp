@@ -34,10 +34,7 @@ const Home = (props) => {
     <div id="Home">
       <h1> you made it! </h1>
       <UserTabs handleTabs={handleTabs}/>
-      <MovieTile />
-      <MovieTile />
-      <MovieTile />
-      <MovieTile />
+      <MovieContainer />
     </div>
     );
 };
