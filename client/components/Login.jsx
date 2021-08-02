@@ -1,5 +1,6 @@
 const regeneratorRuntime = require("regenerator-runtime");
 const axios = require("axios");
+
 import React, { useState, useEffect } from "react";
 import { ReactDOM } from "react";
 import { unstable_renderSubtreeIntoContainer } from "react-dom";
@@ -10,6 +11,8 @@ import {
     Link,
     Redirect
   } from "react-router-dom";
+// import '../stylesheets/styles.css';
+
 
 function Login() {
     const [username, setUsername] = useState('type your login here');
@@ -56,7 +59,7 @@ function Login() {
                 <input type='text' id='username' onChange={e => setUsername(e.target.value)}></input>
                 <input type='text' id='password' onChange={e => setPassword(e.target.value)}></input>
             </div>
-            <div id='buttons' className='loginbuttons'>
+            <div id='buttons'>
                 <button  id="signup">Create new account</button> 
                 <button  id="logInButton" onClick={onLoginClick}>Sign in</button>
             </div>

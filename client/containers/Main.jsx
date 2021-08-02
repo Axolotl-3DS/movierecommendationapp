@@ -17,7 +17,8 @@ import Login from "../components/Login.jsx";
 // This should house the entry point of the app - the login page
 const Main = (props) => {
     return (
-    <div id="Main">
+    <div id="Main" className="container">
+        <img default="lots of movie posters"></img>
         <Login />
     </div>
     );
