@@ -15,7 +15,7 @@ import {
 
 
 function Login() {
-    const [username, setUsername] = useState('type your login here');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [failed, setFailed] = useState(false);
@@ -56,8 +56,8 @@ function Login() {
     return  (
         <div>
             <div id='logIn'>
-                <input type='text' id='username' value={'username'} onChange={e => setUsername(e.target.value)}></input>
-                <input type='text' id='password' value={'password'} onChange={e => setPassword(e.target.value)}></input>
+                <input type='text' id='username' placeholder='Enter username here' value={username} onChange={e => setUsername(e.target.value)}></input>
+                <input type='text' id='password' placeholder='Enter password here' value={password} onChange={e => setPassword(e.target.value)}></input>
             </div>
             <div className="login" id='buttons'>
                 <button  className="buttons" id="logInButton" onClick={onLoginClick}>Sign in</button>
