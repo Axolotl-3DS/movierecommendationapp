@@ -1,12 +1,11 @@
-import { lightblue } from "color-name";
+mport { lightblue } from "color-name";
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
 
 
-function MovieTile (props) {
+function MovieTiles (props) {
     // lift state up - pass in as props?
     const [star, setStar] = useState(false);
-    const [title, setTitle] = useState();
+    const [title, setTitle] = useState(/*fetch*/);
     const [description, setDescription] = useState(/*fetch*/);
     const [poster, usePoster] = useState(/*fetch*/);
 
@@ -40,4 +39,4 @@ function MovieTile (props) {
 
 // className='' <- how you link up the style sheet class in react
 // style={"color: blue; border: 1px; height: 100px; width: 50px"}
-export default MovieTile;
+export default MovieTiles;

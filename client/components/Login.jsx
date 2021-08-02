@@ -15,7 +15,7 @@ import {
 
 
 function Login() {
-    const [username, setUsername] = useState('type your login here');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [failed, setFailed] = useState(false);
