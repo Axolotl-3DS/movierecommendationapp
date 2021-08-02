@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserTabs from '../components/UserTabs';
-import MovieTile from '../components/MovieTile';
+import MovieContainer from './MovieContainer';
 
 const Home = (props) => {
     // we need states to keep track of which tab we're on - Favorites, Recommendations, or Random
@@ -34,7 +34,7 @@ const Home = (props) => {
     <div id="Home">
       <h1> you made it! </h1>
       <UserTabs handleTabs={handleTabs}/>
-      <MovieContainer />
+      <MovieContainer currentTab={currentTab}/>
     </div>
     );
 };

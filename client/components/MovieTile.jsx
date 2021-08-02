@@ -5,17 +5,27 @@ import axios from 'axios';
 
 function MovieTile (props) {
     // lift state up - pass in as props?
+    // console.log(props.props.title);
+    const { id, title, overview, poster_path } = props.props;
     const [star, setStar] = useState(false);
-    const [title, setTitle] = useState();
-    const [description, setDescription] = useState(/*fetch*/);
-    const [poster, usePoster] = useState(/*fetch*/);
+    const [movieTitle, setMovieTitle] = useState(title);
+    const [description, setDescription] = useState('Loading');
+    const [poster, usePoster] = useState(poster_path);
 
     const borderStyle = {
         border: '1px',
-        height: '200px',
-        width: '150px',
-        backgroundColor: 'DodgerBlue',
-        borderColor: 'black'
+        height: '400px',
+        width: '350px',
+        // backgroundColor: 'DodgerBlue',
+        borderColor: 'black',
+        color: 'white',
+    };
+    const imgStyle = {
+        border: '1px',
+        backgroundImage: "url("+ poster_path + ")",
+        height: '100%',
+        width: '100%',
+        backgroundSize: 'cover',
     };
 
     // const mystyle = {
@@ -27,10 +37,11 @@ function MovieTile (props) {
     
     return (        
         <div id='movieTile' style={borderStyle}>
-            <div id='poster'>
+            <div id='poster' style={imgStyle}>
                 <div id='star'>
+                    {/* <img className='moviePosterImg' src={poster_path} /> */}
                     <p id='description'>
-                        Movie description here
+                        {title}
                     </p>
                 </div>
             </div>

@@ -39,3 +39,19 @@
     padding: 4px 16px;
     margin-bottom: 10px;
 }
+
+#movieBox {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    justify-items: center;
+    text-align: center;
+    border: black;
+    gap: 20px;
+}
+
+/* .tilescontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}; */
+

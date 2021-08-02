@@ -5,12 +5,11 @@ const UserTabs = (props) => {
 
   return (
     <div className="tabs">
-        <p>Select type of product to view:</p>
         <div className="radio-toolbar">
 
             <input type="radio" id="choice1"
             name="type" value="Favorites" onClick={handleTabs}/>
-            <label htmlFor="choice1">Favorites</label>
+            <label htmlFor="choice1">Favs</label>
 
             <input type="radio" id="choice2"
             name="type" value="Recommendations" onClick={handleTabs}/>
