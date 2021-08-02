@@ -4,6 +4,9 @@
   "description": "we finally here XD",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development webpack serve --open & nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,12 +20,31 @@
   },
   "homepage": "https://github.com/Axolotl-3DS/movierecommendationapp#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "html-webpack-plugin": "^5.3.2",
     "mongoose": "^5.13.5",
+    "nodemon": "^2.0.12",
     "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "webpack": "^5.47.1",
-    "webpack-cli": "^4.7.2"
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.2.0",
+    "file-loader": "^6.2.0",
+    "sass": "^1.26.3",
+    "sass-loader": "^10.0.5",
+    "style-loader": "^0.23.1",
+    "url-loader": "^2.0.1"
   }
 }
