@@ -17,33 +17,10 @@ mongoose.connect(MONGO_URI, {
   .then(() => console.log('Connected to Mongo DB.'))
   .catch(err => console.log(err));
 
-// const db = mongoose.connection;
-// db.once('open', () => {
-//   console.log('Database connected:', mongoURI);
-// });
-
-// db.on('error', (err) => {
-//   console.error('connection error:', err);
-// });
-
-
-// const SALT_WORK_FACTOR = 10;
-// const bcrypt = require('bcryptjs');
-
-// const mongoose = require('mongoose');
-
-// mongoose.connect(
-//   'mongodb+srv://A3ds:CodesmithAxolotl@cluster0.jy9u7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-//   {useNewUrlParser: true, useUnifiedTopology: true}
-// );
-// mongoose.connection.once('open', () => {
-//   console.log('Connected to Database');
-// });
-
-
 const userSchema = new Schema({
   username: {type: String, required: true, unique: true},
-  password: {type: String, required: true}
+  password: {type: String, required: true},
+  favorites: [Number]
 });
 
 module.exports = mongoose.model('User', userSchema);
