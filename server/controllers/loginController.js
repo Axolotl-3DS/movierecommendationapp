@@ -5,8 +5,9 @@ const loginController = {};
 
 loginController.createUser = async (req, res, next) => {
     try { 
+      console.log('req.body', req.body);
       const newUser = await User.create(req.body);
-      res.redirect('/home');
+      // res.redirect('/home'); // pretty sure this is illegal
     } catch(err) {
         res.send('User already exists')
     };
