@@ -56,12 +56,12 @@ function Login() {
     return  (
         <div>
             <div id='logIn'>
-                <input type='text' id='username' onChange={e => setUsername(e.target.value)}></input>
-                <input type='text' id='password' onChange={e => setPassword(e.target.value)}></input>
+                <input type='text' id='username' value={'username'} onChange={e => setUsername(e.target.value)}></input>
+                <input type='text' id='password' value={'password'} onChange={e => setPassword(e.target.value)}></input>
             </div>
-            <div id='buttons'>
-                <button  id="signup">Create new account</button> 
-                <button  id="logInButton" onClick={onLoginClick}>Sign in</button>
+            <div className="login" id='buttons'>
+                <button  className="buttons" id="logInButton" onClick={onLoginClick}>Sign in</button>
+                <button  className="buttons"  id="signup">Create new account</button> 
             </div>
         </div>
         );
