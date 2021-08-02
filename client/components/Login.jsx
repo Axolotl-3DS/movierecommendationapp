@@ -45,23 +45,40 @@ function Login() {
                 }
             })
     };
-    function onRegisterClick() {
+    async function onRegisterClick() {
         // check agains the data base if this is a valid username / password pair
-        
-        setIsLoggedIn(true);
+        await axios.post('/login/signup', {
+            username,
+            password,
+        })
+        .then ( (res) => {
+            console.log(res)
+            // if (res) {
+            //     console.log('Registration successful', res)
+            // }
+            // else {
+            //     // throw component error
+            //     setIsLoggedIn(false);
+            //     setFailed(true);
+            // }
+            })
+        .catch( err => console.log(err));
     };
 
     // conditional rendering - if failed is true, render a warning popup 
     if (!isLoggedIn) {
     return  (
         <div>
-            <div id='logIn'>
-                <input type='text' id='username' placeholder='Enter username here' value={username} onChange={e => setUsername(e.target.value)}></input>
-                <input type='text' id='password' placeholder='Enter password here' value={password} onChange={e => setPassword(e.target.value)}></input>
+            <h1 className="title">Recommend Me!</h1>
+            <div id='logIn' className='textbox'>
+                <input type='text' id='username' placeholder={'username'} onChange={e => setUsername(e.target.value)} className='textbox'></input>
+                <div></div>
+                <input type='text' id='password' placeholder={'password'} onChange={e => setPassword(e.target.value)} className='textbox'></input>
             </div>
             <div className="login" id='buttons'>
                 <button  className="buttons" id="logInButton" onClick={onLoginClick}>Sign in</button>
-                <button  className="buttons"  id="signup">Create new account</button> 
+                <div> </div>
+                <button  className="buttons" id="signup" onClick={onRegisterClick}>Create new account</button> 
             </div>
         </div>
         );
