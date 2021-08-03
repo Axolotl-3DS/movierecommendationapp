@@ -6,12 +6,15 @@ Note: TMDB Api key is required
 
 ### App structure
 
-|--App  
- |--Main  
-  |--Login  
- |--Home  
-  |--MovieContainer  
-   |--MovieTile  
+````   
+|-- App
+   |-- Main
+      |-- Login 
+   |-- Home
+      |-- MovieContainer  
+         |—- MovieTile 
+````
+
 
 ### Unfinished Goals
 - Oauth logins
