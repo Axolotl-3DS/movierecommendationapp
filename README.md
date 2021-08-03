@@ -16,7 +16,7 @@ Note: TMDB Api key is required
 ````
 
 
-### Unfinished Goals
+### Goals
 - Oauth logins
 - Allow users to add movie to thier favorites
 - User profiles
