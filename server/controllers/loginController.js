@@ -4,7 +4,7 @@ const User = require('../models/userModel');
 const loginController = {};
 
 loginController.createUser = async (req, res, next) => {
-    try { 
+    try {
       // console.log('req.body', req.body);
       const newUser = await User.create(req.body);
       // res.redirect('/home'); // pretty sure this is illegal
@@ -27,8 +27,8 @@ loginController.verifyUser = async (req, res, next) => {
     } catch(err) {
       res.send('Invalid Username or Password');
     }
-  
-   
+
+
 };
 
 module.exports = loginController;
