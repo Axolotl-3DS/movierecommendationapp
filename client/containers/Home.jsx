@@ -14,10 +14,7 @@ const Home = (props) => {
         random: []
     });
 
-    const handleTabs = () => {
-        const selection = document.querySelector('input[name="type"]:checked').value;
-        setCurrentTab(selection);
-    };
+
 
     // these will the final rendered components
     // const [rendered, updatedRendered] = useState([]);
@@ -32,9 +29,7 @@ const Home = (props) => {
     // TODO - add adbox here on Home Page
     return (
     <div id="Home">
-      <h1> you made it! </h1>
-      <UserTabs handleTabs={handleTabs}/>
-      <MovieContainer currentTab={currentTab}/>
+      <MovieContainer/>
     </div>
     );
 };
