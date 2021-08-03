@@ -8,6 +8,29 @@ movieController.getUserInput = async (req, res, next) => {
     return next();
 } 
 
+movieController.getSearch = (req, res, next) => {
+  // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
+  
+  const searchArray = [];
+  const searchPromise = new Promise((resolve, reject) => {
+    resolve(axios(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB}&query=${req.body.title}`))
+  })
+  searchPromise
+  .then( result => {
+    console.log(result.data.results);
+    for(let i = 0; i < 6; i++){
+      const { title, id, poster_path, overview } = result.data.results[i];
+      searchArray.push({id, title, overview, poster_path: `https://image.tmdb.org/t/p/w500/${poster_path}`});
+    }
+    res.locals.searchResults = searchArray;
+    return next();
+  })
+  .catch(err => next({
+    log: 'error occured in getFavs',
+    message: `Error :${err}`
+  }));
+}
+
 movieController.getFavs = async (req, res, next) => {
   // try {
   //   const results = await axios(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB}&query=Avengers`);
@@ -20,6 +43,7 @@ movieController.getFavs = async (req, res, next) => {
   //   console.log('Error at getFavs');
   // }
   const movieRecommendations = [];
+  
   const simonPromise = new Promise((resolve, reject) => {
       resolve(axios(`https://api.themoviedb.org/3/movie/299534/recommendations?api_key=${process.env.TMDB}&language=en-US&page=1`));
   })
@@ -58,7 +82,7 @@ movieController.getRecommendations = (req, res, next) => {
         const { title, id, poster_path, overview } = result.data.results[i];
         movieRecommendations.push({id, title, overview, poster_path: `https://image.tmdb.org/t/p/w500/${poster_path}`});
       }
-      console.log(movieRecommendations);
+      // console.log(movieRecommendations);
       res.locals.recommendations = movieRecommendations;
       return next();
     })

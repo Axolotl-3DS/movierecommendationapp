@@ -5,7 +5,7 @@ const loginController = {};
 
 loginController.createUser = async (req, res, next) => {
     try { 
-      console.log('req.body', req.body);
+      // console.log('req.body', req.body);
       const newUser = await User.create(req.body);
       // res.redirect('/home'); // pretty sure this is illegal
     } catch(err) {
