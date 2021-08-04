@@ -7,7 +7,6 @@ function MovieContainer() {
   const [sel, checkSel] = useState("temp");
   const [movies, refreshMovies] = useState({ recommendations: [] });
   const [search, setSearch] = useState({ title: "" });
-  const [currentTab, setCurrentTab] = useState("Explore");
 
   // TODO: Look into what useRef does as a hook
   const mounted = useRef();
