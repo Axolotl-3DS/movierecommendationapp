@@ -35,10 +35,10 @@ function MovieContainer(props) {
 
   // TODO: Rename on register click and build our query promise
   async function onClickSearch() {
-    console.log("sending search query");
     /**
      * query logic here
      */
+    if (!search) return console.log("search not defined");
     let search_format = search.replace(" ", "+");
     axios
       .post("/api/search", {
@@ -102,9 +102,18 @@ function MovieContainer(props) {
           type='text'
           id='search'
           placeholder={"search"}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => {
+            console.log(e.target.value);
+            setSearch(e.target.value);
+          }}
           className='textbox'></input>
-        <button className='buttons' id='searchButton' onClick={onClickSearch}>
+        <button
+          className='buttons'
+          id='searchButton'
+          onClick={() => {
+            console.log(this.search);
+            return onClickSearch();
+          }}>
           Search for Recommendations
         </button>
       </div>
