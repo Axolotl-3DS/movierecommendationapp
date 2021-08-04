@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import MovieTile from "../components/MovieTile";
 import axios from "axios";
 
-function MovieContainer(props) {
+function MovieContainer() {
   const [items, setItems] = useState([]);
   const [sel, checkSel] = useState("temp");
   const [movies, refreshMovies] = useState({ recommendations: [] });
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState({ title: "" });
   const [currentTab, setCurrentTab] = useState("Explore");
 
   // TODO: Look into what useRef does as a hook
@@ -39,19 +39,24 @@ function MovieContainer(props) {
      * query logic here
      */
     if (!search) return console.log("search not defined");
-    let search_format = search.replace(" ", "+");
-    axios
-      .post("/api/search", {
-        title: search_format,
-      })
-      .then((res) => {
-        // let wrapper = {searches: res.data.searchResults};
-        let oldMovies = movies;
-        oldMovies.searches = res.data.searchResults;
-        refreshMovies(oldMovies);
-        build();
-      })
-      .catch((err) => console.log("App.componentDidMount: ERROR: ", err));
+    try {
+      console.log(search);
+      // let search_format = search.replace(" ", "+");
+      // axios
+      //   .post("/api/search", {
+      //     title: search_format,
+      //   })
+      //   .then((res) => {
+      //     // let wrapper = {searches: res.data.searchResults};
+      //     let oldMovies = movies;
+      //     oldMovies.searches = res.data.searchResults;
+      //     refreshMovies(oldMovies);
+      //     build();
+      //   })
+      //   .catch((err) => console.log("App.componentDidMount: ERROR: ", err));
+    } catch (err) {
+      console.log(err);
+    }
   }
   // TODO: What does build do? How is it different to render?
   const build = () => {
@@ -104,17 +109,12 @@ function MovieContainer(props) {
           placeholder={"search"}
           onChange={(e) => {
             console.log(e.target.value);
-            setSearch(e.target.value);
+            const newSearchObj = { title: e.target.value };
+            setSearch(newSearchObj);
           }}
           className='textbox'></input>
-        <button
-          className='buttons'
-          id='searchButton'
-          onClick={() => {
-            console.log(this.search);
-            return onClickSearch();
-          }}>
-          Search for Recommendations
+        <button className='buttons' id='searchButton' onClick={onClickSearch}>
+          Search
         </button>
       </div>
       <div id='movieBox' className='tilescontainer'>
