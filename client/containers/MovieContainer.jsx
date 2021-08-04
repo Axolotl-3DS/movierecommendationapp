@@ -24,16 +24,15 @@ function MovieContainer() {
       componentMounted.current = true;
       //
     } else {
-      build();
+      fillMovieContainer();
     }
   });
-
-  // TODO: Rename on register click and build our query promise
   async function onClickSearch() {
     /**
      * query logic here
      */
-    if (!search) return console.log("search not defined");
+    // Send alert to browser if no input is provided
+    if (!search || search === "") return alert("search not defined");
     try {
       console.log(search);
       // let search_format = search.replace(" ", "+");
@@ -53,20 +52,16 @@ function MovieContainer() {
       console.log(err);
     }
   }
-  // TODO: What does build do? How is it different to render?
-  const build = () => {
-    // TODO: Pick apart this function
-    if (sel !== currentTab) {
-      const goods = [];
-      for (let i = 0; i < movies.searches.length; i++) {
-        goods.push(
-          <MovieTile className='movieBox' key={i} props={movies.searches[i]} />
-        );
-      }
+
+  const fillMovieContainer = () => {
+    const movies = [];
+    for (let i = 0; i < movies.searches.length; i++) {
+      movies.push(
+        <MovieTile className='movieBox' key={i} props={movies.searches[i]} />
+      );
     }
-    // TODO: Check what these hooks do and comment
-    setItems(goods);
-    checkSel(currentTab);
+    // Replaces the items in state
+    setItems(movies);
   };
 
   return (
