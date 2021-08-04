@@ -12,6 +12,7 @@ function MovieTile (props) {
     const [description, setDescription] = useState('Loading');
     const [poster, usePoster] = useState(poster_path);
 
+
     const borderStyle = {
         border: '1px',
         height: '400px',
@@ -34,8 +35,8 @@ function MovieTile (props) {
     //     padding: "10px",
     //     fontFamily: "Arial"
     //   };
-    
-    return (        
+
+    return (
         <div id='movieTile' style={borderStyle}>
             <div id='poster' style={imgStyle}>
                 <div id='star'>
