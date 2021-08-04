@@ -12,13 +12,6 @@ function MovieContainer() {
   // TODO: Look into what useRef does as a hook
   const mounted = useRef();
 
-  const handleTabs = () => {
-    const selection = document.querySelector(
-      'input[name="type"]:checked'
-    ).value;
-    setCurrentTab(selection);
-    console.log(currentTab);
-  };
   // right now breaks if user clicks before searching
   useEffect(() => {
     if (!mounted.current) {
