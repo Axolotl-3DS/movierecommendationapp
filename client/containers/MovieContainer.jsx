@@ -8,18 +8,21 @@ function MovieContainer() {
   const [movies, refreshMovies] = useState({ recommendations: [] });
   const [search, setSearch] = useState({ title: "" });
 
-  // TODO: Look into what useRef does as a hook
-  const mounted = useRef();
+  // Persist the componentMounted and set to false
+  const componentMounted = useRef(false);
 
   // right now breaks if user clicks before searching
   useEffect(() => {
-    if (!mounted.current) {
+    // Check if the component has been mounted if not fetch data from api endpoint
+    if (!componentMounted.current) {
       axios("/api/")
+        // Return refreshed movie data
         .then((res) => {
           refreshMovies(res.data);
         })
         .catch((err) => console.log("App.componentDidMount: ERROR: ", err));
-      mounted.current = true;
+      componentMounted.current = true;
+      //
     } else {
       build();
     }
@@ -55,41 +58,15 @@ function MovieContainer() {
     // TODO: Pick apart this function
     if (sel !== currentTab) {
       const goods = [];
-      switch (currentTab) {
-        case "Recommendations":
-          for (let i = 0; i < movies.recommendations.length; i++) {
-            goods.push(
-              <MovieTile
-                className='movieBox'
-                key={i}
-                props={movies.recommendations[i]}
-              />
-            );
-          }
-          break;
-        case "Favorites":
-          for (let i = 0; i < 5; i++) {
-            goods.push(
-              <MovieTile className='movieBox' key={i} props={movies.favs[i]} />
-            );
-          }
-          break;
-        case "Searches":
-          for (let i = 0; i < movies.searches.length; i++) {
-            goods.push(
-              <MovieTile
-                className='movieBox'
-                key={i}
-                props={movies.searches[i]}
-              />
-            );
-          }
-          break;
+      for (let i = 0; i < movies.searches.length; i++) {
+        goods.push(
+          <MovieTile className='movieBox' key={i} props={movies.searches[i]} />
+        );
       }
-      // TODO: Check what these hooks do and comment
-      setItems(goods);
-      checkSel(currentTab);
     }
+    // TODO: Check what these hooks do and comment
+    setItems(goods);
+    checkSel(currentTab);
   };
 
   return (
