@@ -18,5 +18,6 @@ describe('Movie route integration', () => {
       })
   });
 });
+
 });
 
