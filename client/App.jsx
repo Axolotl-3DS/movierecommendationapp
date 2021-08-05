@@ -5,7 +5,7 @@ import Home from "./containers/Home.jsx";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 // TODO: Understand correct router syntax (should it be wrapping the app component and the switch component?)
 
-const App = () => {
+const App = (props) => {
   return (
     <Router>
       <Switch>

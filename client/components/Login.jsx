@@ -1,41 +1,41 @@
-const regeneratorRuntime = require('regenerator-runtime');
-const axios = require('axios');
+const regeneratorRuntime = require("regenerator-runtime");
+const axios = require("axios");
 
-import React, { useState, useEffect } from 'react';
-import { ReactDOM } from 'react';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
+import React, { useState, useEffect } from "react";
+import { ReactDOM } from "react";
+import { unstable_renderSubtreeIntoContainer } from "react-dom";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
   Redirect,
-} from 'react-router-dom';
+} from "react-router-dom";
 // import '../stylesheets/styles.css';
 
-function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+function Login(props) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [failed, setFailed] = useState(false);
   const [registered, setRegistered] = useState(false);
   // may need a few more for page behavior
   useEffect(() => {
     console.log(username, password);
-    console.log('isLoggedIn state: ', isLoggedIn);
+    console.log("isLoggedIn state: ", isLoggedIn);
   });
 
   // right dummy code for sign in / create account buttons
   // for now, just send us to the home page
   async function onLoginClick() {
     await axios
-      .post('/login', {
+      .post("/login", {
         username,
         password,
       })
       .then((res) => {
         console.log(res);
-        if (res.data === 'success') {
+        if (res.data === "success") {
           setIsLoggedIn(true); //redirect us
         } else {
           // throw component error
@@ -47,7 +47,7 @@ function Login() {
   async function onRegisterClick() {
     // check agains the data base if this is a valid username / password pair
     await axios
-      .post('/login/signup', {
+      .post("/login/signup", {
         username,
         password,
       })
@@ -67,7 +67,7 @@ function Login() {
 
   async function googleClick() {
     try {
-      await fetch('/auth/google');
+      await fetch("/auth/google");
     } catch (err) {
       console.log(`googleclick: ${err}`);
     }
@@ -82,18 +82,16 @@ function Login() {
           <input
             type='text'
             id='username'
-            placeholder={'username'}
+            placeholder={"username"}
             onChange={(e) => setUsername(e.target.value)}
-            className='textbox'
-          ></input>
+            className='textbox'></input>
           <div></div>
           <input
             type='text'
             id='password'
-            placeholder={'password'}
+            placeholder={"password"}
             onChange={(e) => setPassword(e.target.value)}
-            className='textbox'
-          ></input>
+            className='textbox'></input>
         </div>
         <div className='login' id='buttons'>
           <button className='buttons' id='logInButton' onClick={onLoginClick}>
