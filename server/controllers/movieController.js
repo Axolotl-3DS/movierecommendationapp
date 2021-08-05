@@ -18,7 +18,7 @@ movieController.getRecs = async (req, res, next) => {
   //   const favsList = user.favorites;
   // });
 
-  const movieList = ['1726'];
+  const movieList = ['272', '497'];
   // for each fav movie, get the top 5 recommended
   const recsArray = [];
   const idCheck = {};
@@ -55,7 +55,7 @@ movieController.getFavs = async (req, res, next) => {
   // });
 
   // loop through favorite movies array, get movie info from database
-  const favsList = ['1726', '272'];
+  const favsList = ['497', '272'];
   favsArray = [];
   for (let i = 0; i < favsList.length; i++){
     const res = await axios(`https://api.themoviedb.org/3/movie/${favsList[i]}?api_key=${process.env.TMBD}&language=en-US`)
@@ -68,6 +68,7 @@ movieController.getFavs = async (req, res, next) => {
       });
   }
   res.locals.favsArray = favsArray;
+  console.log(res.locals.favsArray)
   return next();
 }
 
