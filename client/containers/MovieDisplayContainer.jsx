@@ -57,4 +57,4 @@ function MovieDisplayContainer(props) {
   );
 }
 
-export default MovieContainer;
+export default MovieDisplayContainer;
