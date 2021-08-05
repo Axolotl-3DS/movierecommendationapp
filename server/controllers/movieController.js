@@ -18,7 +18,7 @@ movieController.getRecs = async (req, res, next) => {
   //   const favsList = user.favorites;
   // });
 
-  const movieList = ['1726', '68721'];
+  const movieList = ['1726'];
   // for each fav movie, get the top 5 recommended
   const recsArray = [];
   for (let i = 0; i < movieList.length; i++ ){
@@ -27,14 +27,18 @@ movieController.getRecs = async (req, res, next) => {
     const recs = response.data.results;
     // push the first 5 recs into recsArray
     // remove duplicates before storing in res.locals
+    const idCheck = {};
     for (let i = 0; i < 5; i++) {
       const { title, id, poster_path, overview } = recs[i];
-      recsArray.push({
-        title,
-        id,
-        overview,
-        poster_path: `https://image.tmdb.org/t/p/w500/${poster_path}`,
-      })
+      if (!idCheck[id]) {
+        idCheck.id = 1;
+        recsArray.push({
+          title,
+          id,
+          overview,
+          poster_path: `https://image.tmdb.org/t/p/w500/${poster_path}`,
+        })
+      }
     }
   }
   res.locals.recsArray = recsArray;
@@ -47,11 +51,10 @@ movieController.getFavs = async (req, res, next) => {
   const { username } = req.body;
   // get fav movie IDs from database
   // await User.findOne({ username }, (err, user) => {
-  //   const check = user.favorites;
+  //   const dbFavs = user.favorites;
   // });
 
   // loop through favorite movies array, get movie info from database
-  console.log(check);
   const favsList = ['1726', '272'];
   favsArray = [];
   for (let i = 0; i < favsList.length; i++){
