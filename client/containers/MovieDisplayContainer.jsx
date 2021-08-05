@@ -6,11 +6,18 @@ function MovieDisplayContainer(props) {
   const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
   const [favs, setFavs] = useState([]);
+  const [componentMounted, setMount] = useState(false);
 
   // right now breaks if user clicks before searching
   useEffect(() => {
-    postFavs(favs);
-  });
+    if (favs) {
+      postFavs(favs);
+    }
+  }, [favs]);
+
+  if (componentMounted) {
+    getFavs(favs);
+  }
   async function onClickSearch() {
     if (event.key === "Enter") {
       let search_format = search.replace(" ", "+");
@@ -25,9 +32,10 @@ function MovieDisplayContainer(props) {
 
   function getFavs(favs) {
     axios
-      .get("api/favs", { favs: favs })
+      .get("api/favs")
       .then((res) => {
         setFavs(res.data.favs);
+        console.log(res.data.favs);
       })
       .catch((err) => {
         console.log("Error retrieving favs", err);

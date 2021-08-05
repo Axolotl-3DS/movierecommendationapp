@@ -3,9 +3,12 @@ const router = express.Router();
 const movieController = require("../controllers/movieController");
 
 router.get(
-  "/",
-  movieController.getUserInput,
-  movieController.getFavs,
+  "/api/favs",
+  (req, res, next) => {
+    console.log('hits get route')
+  }
+  // movieController.getUserInput,
+  // movieController.getFavs,
   (req, res) => res.status(200).json(res.locals)
 );
 
