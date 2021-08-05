@@ -34,20 +34,19 @@ function MovieContainer(props) {
     // Send alert to browser if no input is provided
     if (!search || search === "") return alert("search not defined");
     try {
-      await console.log(search);
-      // let search_format = search.replace(" ", "+");
-      // axios
-      //   .post("/api/search", {
-      //     title: search_format,
-      //   })
-      //   .then((res) => {
-      //     // let wrapper = {searches: res.data.searchResults};
-      //     let oldMovies = movies;
-      //     oldMovies.searches = res.data.searchResults;
-      //     refreshMovies(oldMovies);
-      //     build();
-      //   })
-      //   .catch((err) => console.log("App.componentDidMount: ERROR: ", err));
+      let search_format = search.replace(" ", "+");
+      axios
+        .post("/api/search", {
+          title: search_format,
+        })
+        .then((res) => {
+          // let wrapper = {searches: res.data.searchResults};
+          let oldMovies = movies;
+          oldMovies.searches = res.data.searchResults;
+          refreshMovies(oldMovies);
+          build();
+        })
+        .catch((err) => console.log("App.componentDidMount: ERROR: ", err));
     } catch (err) {
       console.log(err);
     }
@@ -67,7 +66,9 @@ function MovieContainer(props) {
   // Renders movieTile with contents of the movies prop
   const fillMovieContainer = () => {
     for (let i = 0; i < items.length; i++) {
-      movies.push(<MovieTile className='movieBox' key={i} props={items[i]} />);
+      moviesToRender.push(
+        <MovieTile className='movieBox' key={i} props={items[i]} />
+      );
     }
     // Replaces the items in state
     setItems(moviesToRender);
