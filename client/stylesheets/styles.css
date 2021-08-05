@@ -56,7 +56,7 @@ h3 {
   margin-bottom: 10px;
 }
 
-.movieContainer {
+.movieDisplayContainer {
   width: 100vw;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

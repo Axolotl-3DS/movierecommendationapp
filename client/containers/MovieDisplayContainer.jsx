@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import MovieTile from "../components/MovieTile";
 import axios from "axios";
 
-function MovieContainer(props) {
+function MovieDisplayContainer(props) {
   const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -52,7 +52,7 @@ function MovieContainer(props) {
           className='textbox'
           onKeyDown={onClickSearch}></input>
       </div>
-      <div className='movieContainer'>{renderResults()}</div>
+      <div className='movieDisplayContainer'>{renderResults()}</div>
     </div>
   );
 }
