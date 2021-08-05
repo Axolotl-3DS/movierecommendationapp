@@ -13,4 +13,8 @@ router.post("/search", movieController.getSearch, (req, res) =>
   res.status(200).json(res.locals)
 );
 
+router.post("/favs", movieController.getFavs, (req, res) =>
+  res.status(200).json(res.locals.favsArray)
+);
+
 module.exports = router;
