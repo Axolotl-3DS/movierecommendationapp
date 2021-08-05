@@ -4,9 +4,8 @@ const movieController = require("../controllers/movieController");
 
 router.get(
   "/",
-  // movieController.getUserInput,
-  // movieController.getRecommendations,
-  // movieController.getFavs,
+  movieController.getUserInput,
+  movieController.getFavs,
   (req, res) => res.status(200).json(res.locals)
 );
 
