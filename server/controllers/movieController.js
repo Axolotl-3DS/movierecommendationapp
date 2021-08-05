@@ -21,13 +21,13 @@ movieController.getRecs = async (req, res, next) => {
   const movieList = ['1726'];
   // for each fav movie, get the top 5 recommended
   const recsArray = [];
+  const idCheck = {};
   for (let i = 0; i < movieList.length; i++ ){
     const response = await axios(`https://api.themoviedb.org/3/movie/${movieList[i]}/recommendations?api_key=${process.env.TMBD}&language=en-US&page=1}`);
     // pull out results = array of objects
     const recs = response.data.results;
     // push the first 5 recs into recsArray
-    // remove duplicates before storing in res.locals
-    const idCheck = {};
+    // remove duplicates using idCheck before storing in res.locals
     for (let i = 0; i < 5; i++) {
       const { title, id, poster_path, overview } = recs[i];
       if (!idCheck[id]) {
