@@ -18,12 +18,14 @@ movieController.getRecs = async (req, res, next) => {
   //   const favsList = user.favorites;
   // });
 
-  const movieList = ['272', '497'];
+  const movieList = ["272", "497"];
   // for each fav movie, get the top 5 recommended
   const recsArray = [];
   const idCheck = {};
-  for (let i = 0; i < movieList.length; i++ ){
-    const response = await axios(`https://api.themoviedb.org/3/movie/${movieList[i]}/recommendations?api_key=${process.env.TMBD}&language=en-US&page=1}`);
+  for (let i = 0; i < movieList.length; i++) {
+    const response = await axios(
+      `https://api.themoviedb.org/3/movie/${movieList[i]}/recommendations?api_key=${process.env.TMBD}&language=en-US&page=1}`
+    );
     // pull out results = array of objects
     const recs = response.data.results;
     // push the first 5 recs into recsArray
@@ -37,15 +39,13 @@ movieController.getRecs = async (req, res, next) => {
           id,
           overview,
           poster_path: `https://image.tmdb.org/t/p/w500/${poster_path}`,
-        })
+        });
       }
     }
   }
   res.locals.recsArray = recsArray;
   return next();
 };
-
-
 
 movieController.getFavs = async (req, res, next) => {
   const { username } = req.body;
@@ -55,22 +55,24 @@ movieController.getFavs = async (req, res, next) => {
   // });
 
   // loop through favorite movies array, get movie info from database
-  const favsList = ['497', '272'];
+  const favsList = ["497", "272"];
   favsArray = [];
-  for (let i = 0; i < favsList.length; i++){
-    const res = await axios(`https://api.themoviedb.org/3/movie/${favsList[i]}?api_key=${process.env.TMBD}&language=en-US`)
+  for (let i = 0; i < favsList.length; i++) {
+    const res = await axios(
+      `https://api.themoviedb.org/3/movie/${favsList[i]}?api_key=${process.env.TMBD}&language=en-US`
+    );
     const { title, id, poster_path, overview } = res.data;
-      favsArray.push({
-        title,
-        id,
-        overview,
-        poster_path: `https://image.tmdb.org/t/p/w500/${poster_path}`,
-      });
+    favsArray.push({
+      title,
+      id,
+      overview,
+      poster_path: `https://image.tmdb.org/t/p/w500/${poster_path}`,
+    });
   }
   res.locals.favsArray = favsArray;
-  console.log(res.locals.favsArray)
+  console.log(res.locals.favsArray);
   return next();
-}
+};
 
 movieController.getSearch = (req, res, next) => {
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher

@@ -9,15 +9,7 @@ function MovieDisplayContainer(props) {
   const [componentMounted, setMount] = useState(false);
 
   // right now breaks if user clicks before searching
-  useEffect(() => {
-    if (favs) {
-      postFavs(favs);
-    }
-  }, [favs]);
-
-  if (componentMounted) {
-    getFavs(favs);
-  }
+  useEffect(() => {});
   async function onClickSearch() {
     if (event.key === "Enter") {
       let search_format = search.replace(" ", "+");
@@ -33,10 +25,7 @@ function MovieDisplayContainer(props) {
   function getFavs(favs) {
     axios
       .get("api/favs")
-      .then((res) => {
-        setFavs(res.data.favs);
-        console.log(res.data.favs);
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log("Error retrieving favs", err);
       });
@@ -45,9 +34,7 @@ function MovieDisplayContainer(props) {
   function postFavs(favs) {
     axios
       .post("api/favs", { favs: favs })
-      .then((res) => {
-        setFavs(res.data.favs);
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log("Error retrieving favs", err);
       });

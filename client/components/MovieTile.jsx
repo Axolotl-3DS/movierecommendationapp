@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 function MovieTile(props) {
+  console.log(props);
   // lift state up - pass in as props?
   const { id, title, poster_path } = props.props;
   const [isFav, setFav] = useState(true);
@@ -15,6 +16,7 @@ function MovieTile(props) {
     } else {
       props.setFavs([...props.favs, id]);
     }
+    console.log(props.favs);
     setFav(!isFav);
   }
 

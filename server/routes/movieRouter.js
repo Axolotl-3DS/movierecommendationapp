@@ -5,8 +5,8 @@ const movieController = require("../controllers/movieController");
 router.get(
   "/api/favs",
   (req, res, next) => {
-    console.log('hits get route')
-  }
+    console.log("hits get route");
+  },
   // movieController.getUserInput,
   // movieController.getFavs,
   (req, res) => res.status(200).json(res.locals)
