@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Axolotl-3DS/movierecommendationapp#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
     "dotenv": "^10.0.0",

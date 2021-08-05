@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-
+const bcrypt = require('bcryptjs');
 const loginController = {};
 
 loginController.createUser = async (req, res, next) => {
@@ -19,9 +19,11 @@ loginController.verifyUser = async (req, res, next) => {
   const { username, password } = req.body;
   try {
     await User.findOne({ username }, (err, user) => {
-      if (!user || user.password !== password)
-        res.send('Invalid Username or Password');
+      // console.log('checking password');
+      const isValid = bcrypt.compareSync(password, user.password);
+      if (!user || !isValid) return res.send('Invalid Username or Password');
       else {
+        // console.log('password is gooda');
         res.locals.id = user._id;
         return next();
       }
