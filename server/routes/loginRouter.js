@@ -22,8 +22,8 @@ router.get(
   '/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
   function (req, res) {
-    console.log('github Passport authenticated', req);
-    res.cookie('Github Oauth Cookie:', req.user_id);
+    console.log('github Passport authenticated', req.user._id);
+    res.cookie('ssid:', req.user._id);
     //Successful authentication, redirect home
     res.redirect('http://localhost:8080/home');
   }

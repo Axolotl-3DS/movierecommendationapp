@@ -54,8 +54,12 @@ function Login(props) {
       .catch((err) => console.log(err));
   }
 
-  async function googleClick() {
+  function googleClick() {
     window.location.href = 'login/auth/google';
+  }
+
+  function githubClick() {
+    window.location.href = 'login/auth/github';
   }
 
   // conditional rendering - if failed is true, render a warning popup
