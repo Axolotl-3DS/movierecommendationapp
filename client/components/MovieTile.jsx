@@ -2,25 +2,28 @@ import React, { useState } from "react";
 
 function MovieTile(props) {
   // lift state up - pass in as props?
-  // console.log(props.props.title);
-  const { id, title, overview, poster_path } = props.props;
-  const [star, setStar] = useState(false);
-  const [movieTitle, setMovieTitle] = useState(title);
-  const [description, setDescription] = useState("Loading");
-  const [poster, usePoster] = useState(poster_path);
-  const [check, setCheck] = useState(false);
+  const { id, title, poster_path } = props.props;
+  const [isFav, setFav] = useState(true);
 
-  function handleOnClick() {
-    setCheck({
-      condition: !check,
-    });
+  function ToggleFav(id) {
+    if (!isFav) {
+      props.setFavs(
+        props.favs.filter((film) => {
+          film !== id;
+        })
+      );
+    } else {
+      props.setFavs([...props.favs, id]);
+    }
+    setFav(!isFav);
   }
 
   return (
     <div className='movieTile'>
-      {/* <div
-        id={check ? "heart:is-active" : "heart"}
-        onClick={handleOnClick}></div> */}
+      <input
+        className='likeButton'
+        type='checkbox'
+        onClick={() => ToggleFav(id)}></input>
       <img className='moviePosterImg' src={poster_path} />
       <p className='movieTitle'>{title}</p>
     </div>
