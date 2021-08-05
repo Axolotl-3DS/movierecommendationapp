@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MovieContainer from "./MovieContainer";
+import MovieSearchContainer from "./MovieSearchContainer";
 
 // TODO: Block rendering if session isn't active
 
@@ -17,7 +17,7 @@ const Home = (props) => {
 
   return (
     <div id='Home'>
-      <MovieContainer />
+      <MovieSearchContainer />
     </div>
   );
 };
