@@ -56,6 +56,7 @@ describe('React unit tests', () => {
       expect(wrapper.find('MovieContainer').state('isLoggedIn')).toBe(true);
     });
   });
+});
 
 
 
