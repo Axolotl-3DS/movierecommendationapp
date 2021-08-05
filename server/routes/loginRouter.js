@@ -6,7 +6,30 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const dotenv = require('dotenv').config();
 const User = require('../models/userModel');
 const mongoose = require('mongoose');
+require('../githubPassport');
 
+//github Oauth
+
+//Authentication Request
+router.get(
+  '/auth/github',
+  passport.authenticate('github', {
+    scope: ['user:email'],
+  })
+);
+
+router.get(
+  '/auth/github/callback',
+  passport.authenticate('github', { failureRedirect: '/' }),
+  function (req, res) {
+    console.log('github Passport authenticated', req.user._id);
+    res.cookie('ssid:', req.user._id);
+    //Successful authentication, redirect home
+    res.redirect('http://localhost:8080/home');
+  }
+);
+
+//google Oauth
 passport.use(
   new GoogleStrategy(
     {
@@ -64,7 +87,7 @@ router.get(
   passport.authenticate('google', { failureRedirect: '/' }),
   function (req, res) {
     console.log('hey');
-    res.cookie('Google Oauth Cookie:', req.user._id);
+    res.cookie('ssid:', req.user._id);
     // Successful authentication, redirect home.
     res.redirect('http://localhost:8080/home');
   }

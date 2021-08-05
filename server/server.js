@@ -8,8 +8,8 @@ const cookieParser = require('cookie-parser');
 // const gOauthRouter = require('./routes/google_Oauth');
 const dotenv = require('dotenv').config();
 const cookieSession = require('cookie-session');
-
 const app = express();
+require('./githubPassport');
 
 app.use(cookieParser());
 app.use(express.json());
@@ -26,6 +26,7 @@ app.use('/login', loginRouter);
 app.use(
   cookieSession({
     // milliseconds of a day
+    name: 'auth-session',
     maxAge: 24 * 60 * 60 * 1000,
     keys: [process.env.cookieKey],
   })
@@ -38,7 +39,7 @@ app.get('/home', (req, res) =>
   res.status(200).send('home page route is working')
 );
 app.delete('/logout', (req, res) => {
-  res.clearCookie('Google Oauth Cookie:');
+  res.clearCookie('ssid:');
   res.redirect('http://localhost:8080/');
 });
 app.get('/', (req, res) => res.status(200).sendFile('../index.html'));
