@@ -57,5 +57,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html',
     })
+    @babel/plugin-syntax-jsx,
   ],
 };
