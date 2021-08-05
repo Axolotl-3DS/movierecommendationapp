@@ -76,6 +76,13 @@ h3 {
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 }
 
+.likeButton {
+  display: absolute;
+  width: 25px;
+  height: 25px;
+  z-index: 0;
+}
+
 .movieTitle {
   grid-row: 2/3;
 }
