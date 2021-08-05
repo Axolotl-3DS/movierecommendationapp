@@ -8,8 +8,8 @@ const cookieParser = require('cookie-parser');
 // const gOauthRouter = require('./routes/google_Oauth');
 const dotenv = require('dotenv').config();
 const cookieSession = require('cookie-session');
-
 const app = express();
+require('./githubPassport');
 
 app.use(cookieParser());
 app.use(express.json());
@@ -26,6 +26,7 @@ app.use('/login', loginRouter);
 app.use(
   cookieSession({
     // milliseconds of a day
+    name: 'auth-session',
     maxAge: 24 * 60 * 60 * 1000,
     keys: [process.env.cookieKey],
   })
