@@ -55,47 +55,27 @@ movieController.getRecommendations = (req, res, next) => {
 };
 
 movieController.getFavs = async (req, res, next) => {
-  // try {
-  //   const results = await axios(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB}&query=Avengers`);
-  //   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
-  //   // console.log(results.data.results);
-  //   // const favs = results.data.results[0].original_title;
-  //   res.locals.getFavs = results.data.results;
-  //   return next();
-  // } catch(err) {
-  //   console.log('Error at getFavs');
-  // }
-  const movieRecommendations = [];
-  console.log("favs", process.env.TMDB);
-  const simonPromise = new Promise((resolve, reject) => {
-    resolve(
-      axios(
-        `https://api.themoviedb.org/3/movie/299534/recommendations?api_key=${process.env.TMDB}&language=en-US&page=1`
-      )
-    );
-  });
-
-  simonPromise
-    .then((result) => {
-      for (let i = 0; i < 20; i++) {
-        const { title, id, poster_path, overview } = result.data.results[i];
-        movieRecommendations.push({
-          id,
-          title,
-          overview,
-          poster_path: `https://image.tmdb.org/t/p/w500/${poster_path}`,
-        });
-      }
-      res.locals.favs = movieRecommendations.reverse();
-      return next();
-    })
-    .catch((err) =>
-      next({
-        log: `Error :${err}`,
-        message: "error occured in getFavs",
-      })
-    );
-};
+  const { username } = req.body;
+  // get fav movie IDs from database
+  // await User.findOne({ username }, (err, user) => {
+  //   const favsList = user.favorites;
+  // });
+  // loop through favorite movies array, get movie info from database
+  const favsList = ['1726', '68721', '272'];
+  favsArray = [];
+  for (let i = 0; i < favsList.length; i++){
+    const res = await axios(`https://api.themoviedb.org/3/movie/${favsList[i]}?api_key=${process.env.TMBD}&language=en-US`)
+    const { title, id, poster_path, overview } = res.data;
+      favsArray.push({
+        title,
+        id,
+        overview,
+        poster_path: `https://image.tmdb.org/t/p/w500/${poster_path}`,
+      });
+  }
+  res.locals.favsArray = favsArray;
+  return next();
+}
 
 movieController.getSearch = (req, res, next) => {
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
