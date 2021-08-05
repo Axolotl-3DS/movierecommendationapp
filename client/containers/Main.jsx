@@ -1,3 +1,4 @@
+const regeneratorRuntime = require("regenerator-runtime");
 import React from "react";
 import Login from "../components/Login.jsx";
 
