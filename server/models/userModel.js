@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const dotenv = require('dotenv');
+const bcrypt = require('bcryptjs');
+
+const SALT_WORK_FACTOR = 10;
 
 dotenv.config();
 
@@ -22,6 +25,14 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   email: { type: String, required: false },
   favorites: { type: [Number], required: false },
+});
+
+//Encrypt user password prior to saving in the DB
+userSchema.pre('save', function (next) {
+  const salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
+  const hash = bcrypt.hashSync(this.password, salt);
+  this.password = hash;
+  return next();
 });
 
 module.exports = mongoose.model('User', userSchema);
