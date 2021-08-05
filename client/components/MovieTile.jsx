@@ -8,15 +8,21 @@ function MovieTile(props) {
   const [movieTitle, setMovieTitle] = useState(title);
   const [description, setDescription] = useState("Loading");
   const [poster, usePoster] = useState(poster_path);
+  const [check, setCheck] = useState(false);
+
+  function handleOnClick() {
+    setCheck({
+      condition: !check,
+    });
+  }
 
   return (
-    <div id='movieTile'>
-      <div id='poster'>
-        <div id='star'>
-          <img className='moviePosterImg' src={poster_path} />
-          <p id='description'>{title}</p>
-        </div>
-      </div>
+    <div className='movieTile'>
+      {/* <div
+        id={check ? "heart:is-active" : "heart"}
+        onClick={handleOnClick}></div> */}
+      <img className='moviePosterImg' src={poster_path} />
+      <p className='movieTitle'>{title}</p>
     </div>
   );
 }
