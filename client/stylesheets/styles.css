@@ -60,20 +60,45 @@ h3 {
   width: 100vw;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
   justify-items: center;
   text-align: center;
   border: #232323;
   row-gap: 1em;
 }
 
-#movieTile {
-  margin: 25px;
+.movieTile {
+  min-width: 200px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5.8fr 1fr;
+  border-radius: 10px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+.likeButton {
+  display: absolute;
+  width: 25px;
+  height: 25px;
+  z-index: 0;
+}
+
+.movieTitle {
+  grid-row: 2/3;
+}
+
+.moviePosterImg {
+  width: 100%;
+  height: auto;
+  grid-row: 1/2;
+  position: absolute;
+  z-index: -1;
 }
 
 img {
   width: 100%;
   height: 100%;
   max-width: 200px;
-  object-fit: cover;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }

@@ -5,24 +5,39 @@ import axios from "axios";
 function MovieDisplayContainer(props) {
   const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
+  const [favs, setFavs] = useState([]);
+  const [componentMounted, setMount] = useState(false);
 
-  // Persist the componentMounted and set to false
-  const componentMounted = useRef(false);
-  let movieCards = [];
   // right now breaks if user clicks before searching
-  // useEffect(() => {});
+  useEffect(() => {});
   async function onClickSearch() {
     if (event.key === "Enter") {
       let search_format = search.replace(" ", "+");
       axios
         .post("/api/search", { title: search_format })
         .then((res) => {
-          console.log(res);
-          let wrapper = { searches: res.data.searchResults };
           setItems(res.data.searchResults);
         })
         .catch((err) => console.log("App.componentDidMount: ERROR: ", err));
     }
+  }
+
+  function getFavs(favs) {
+    axios
+      .get("api/favs")
+      .then((res) => {})
+      .catch((err) => {
+        console.log("Error retrieving favs", err);
+      });
+  }
+
+  function postFavs(favs) {
+    axios
+      .post("api/favs", { favs: favs })
+      .then((res) => {})
+      .catch((err) => {
+        console.log("Error retrieving favs", err);
+      });
   }
 
   const renderResults = () => {
@@ -30,9 +45,18 @@ function MovieDisplayContainer(props) {
     if (items.length > 0 && runOnce === false) {
       // Renders movieTile with contents of the movies prop
       runOnce = true;
-      return items.map((el, i) => {
-        return <MovieTile className='movieTile' key={i} props={el} />;
+      const currentMovieSearchList = items.map((el, i) => {
+        return (
+          <MovieTile
+            className='movieTile'
+            setFavs={setFavs}
+            favs={favs}
+            key={i}
+            props={el}
+          />
+        );
       });
+      return currentMovieSearchList;
     }
   };
 
