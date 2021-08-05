@@ -25,6 +25,7 @@ loginController.verifyUser = async (req, res, next) => {
       else {
         // console.log('password is gooda');
         res.locals.id = user._id;
+        res.cookie('ssid:', user._id);
         return next();
       }
     });

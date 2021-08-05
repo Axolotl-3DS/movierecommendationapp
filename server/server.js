@@ -38,7 +38,7 @@ app.get('/home', (req, res) =>
   res.status(200).send('home page route is working')
 );
 app.delete('/logout', (req, res) => {
-  res.clearCookie('Google Oauth Cookie:');
+  res.clearCookie('ssid:');
   res.redirect('http://localhost:8080/');
 });
 app.get('/', (req, res) => res.status(200).sendFile('../index.html'));

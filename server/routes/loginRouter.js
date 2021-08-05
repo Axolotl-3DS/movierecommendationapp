@@ -64,7 +64,7 @@ router.get(
   passport.authenticate('google', { failureRedirect: '/' }),
   function (req, res) {
     console.log('hey');
-    res.cookie('Google Oauth Cookie:', req.user._id);
+    res.cookie('ssid:', req.user._id);
     // Successful authentication, redirect home.
     res.redirect('http://localhost:8080/home');
   }
