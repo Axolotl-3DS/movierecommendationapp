@@ -1,11 +1,10 @@
 import React from "react";
-import { render } from "react-dom";
+import ReactDOM from "react-dom";
 import App from "./App.jsx";
-import { BrowserRouter as Router } from "react-router-dom";
 
-render(
-  <Router>
+ReactDOM.render(
+  <React.StrictMode>
     <App />
-  </Router>,
+  </React.StrictMode>,
   document.getElementById("root")
 );
