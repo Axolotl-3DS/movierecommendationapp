@@ -1,12 +1,27 @@
-.container {
-  display: flex;
+body {
+  margin: auto 0;
   background-color: #f8f5f2;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+h3 {
+  margin-left: 5px;
+}
+.searchBar {
+  margin: 10px;
+}
+
+#search:focus {
+  outline: none;
+}
+
+.container {
+  display: grid;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .textbox {
@@ -41,17 +56,24 @@
   margin-bottom: 10px;
 }
 
-#movieBox {
+.movieContainer {
+  width: 100vw;
   display: grid;
-  grid-template-columns: repeat(4, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   justify-items: center;
   text-align: center;
   border: #232323;
-  gap: 20px;
+  row-gap: 1em;
 }
 
-/* .tilescontainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}; */
+#movieTile {
+  margin: 25px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  max-width: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
