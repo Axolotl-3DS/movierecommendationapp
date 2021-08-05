@@ -85,6 +85,7 @@ h3 {
   height: auto;
   grid-row: 1/2;
   position: absolute;
+  z-index: -1;
 }
 
 img {
@@ -93,24 +94,4 @@ img {
   max-width: 200px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-}
-
-#heart {
-  width: 100px;
-  height: 100px;
-  background: url("https://cssanimation.rocks/images/posts/steps/heart.png")
-    no-repeat;
-  background-position: 0 0;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
-  transition: background-position 1s steps(28);
-  transition-duration: 0s;
-}
-
-#heart:is-active {
-  width: 100px;
-  height: 100px;
-  transition-duration: 1s;
-  background-position: -2800px 0;
 }
