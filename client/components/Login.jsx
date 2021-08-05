@@ -1,17 +1,6 @@
-const regeneratorRuntime = require("regenerator-runtime");
 const axios = require("axios");
-
 import React, { useState, useEffect } from "react";
-import { ReactDOM } from "react";
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from "react-router-dom";
-// import '../stylesheets/styles.css';
+import { Redirect } from "react-router-dom";
 
 function Login(props) {
   const [username, setUsername] = useState("");
@@ -77,7 +66,7 @@ function Login(props) {
   if (!isLoggedIn) {
     return (
       <div>
-        <h1 className='title'>Recommend Me!</h1>
+        <h1 className='title'>🐍 MovieSnek 🐍</h1>
         <div id='logIn' className='textbox'>
           <input
             type='text'
