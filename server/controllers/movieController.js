@@ -9,59 +9,53 @@ movieController.getUserInput = async (req, res, next) => {
   return next();
 };
 
-movieController.getRecommendations = (req, res, next) => {
-  // newAPI get recommendations https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=<<api_key>>&language=en-US&page=1
-  console.log("get recommendations", process.env.TMDB);
-  const movieRecommendations = [];
-  const simonPromise = new Promise((resolve, reject) => {
-    resolve(
-      axios(
-        `https://api.themoviedb.org/3/movie/299534/recommendations?api_key=${process.env.TMDB}&language=en-US&page=1`
-      )
-    );
-  });
+movieController.getRecs = async (req, res, next) => {
+  // https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=<<api_key>>&language=en-US&page=1
 
-  simonPromise
-    .then((result) => {
-      for (let i = 0; i < 20; i++) {
-        const { title, id, poster_path, overview } = result.data.results[i];
-        movieRecommendations.push({
-          id,
-          title,
-          overview,
-          poster_path: `https://image.tmdb.org/t/p/w500/${poster_path}`,
-        });
-      }
-      // console.log(movieRecommendations);
-      res.locals.recommendations = movieRecommendations;
-      return next();
-    })
-    .catch((err) =>
-      next({
-        log: `Error :${err}`,
-        message: "error occured in getFavs",
-      })
-    );
-
-  // try {
-  //     const results = await axios('https://tastedive.com/api/similar?q=thor&type=movie');
-  //     console.log(results.data.Similar)
-  //     res.locals.movies = results.data.Similar;
-  //     return next();
-
-  // } catch(err) {
-  //     console.log('Error at getRecommendations');
-  // }
-};
-
-movieController.getFavs = async (req, res, next) => {
   const { username } = req.body;
   // get fav movie IDs from database
   // await User.findOne({ username }, (err, user) => {
   //   const favsList = user.favorites;
   // });
+
+  const movieList = ['272', '497'];
+  // for each fav movie, get the top 5 recommended
+  const recsArray = [];
+  const idCheck = {};
+  for (let i = 0; i < movieList.length; i++ ){
+    const response = await axios(`https://api.themoviedb.org/3/movie/${movieList[i]}/recommendations?api_key=${process.env.TMBD}&language=en-US&page=1}`);
+    // pull out results = array of objects
+    const recs = response.data.results;
+    // push the first 5 recs into recsArray
+    // remove duplicates using idCheck before storing in res.locals
+    for (let i = 0; i < 5; i++) {
+      const { title, id, poster_path, overview } = recs[i];
+      if (!idCheck[id]) {
+        idCheck.id = 1;
+        recsArray.push({
+          title,
+          id,
+          overview,
+          poster_path: `https://image.tmdb.org/t/p/w500/${poster_path}`,
+        })
+      }
+    }
+  }
+  res.locals.recsArray = recsArray;
+  return next();
+};
+
+
+
+movieController.getFavs = async (req, res, next) => {
+  const { username } = req.body;
+  // get fav movie IDs from database
+  // await User.findOne({ username }, (err, user) => {
+  //   const dbFavs = user.favorites;
+  // });
+
   // loop through favorite movies array, get movie info from database
-  const favsList = ['1726', '68721', '272'];
+  const favsList = ['497', '272'];
   favsArray = [];
   for (let i = 0; i < favsList.length; i++){
     const res = await axios(`https://api.themoviedb.org/3/movie/${favsList[i]}?api_key=${process.env.TMBD}&language=en-US`)
@@ -74,6 +68,7 @@ movieController.getFavs = async (req, res, next) => {
       });
   }
   res.locals.favsArray = favsArray;
+  console.log(res.locals.favsArray)
   return next();
 }
 
