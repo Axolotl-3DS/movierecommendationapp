@@ -1,16 +1,14 @@
-const regeneratorRuntime = require("regenerator-runtime");
 const axios = require("axios");
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
-function Login() {
+function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [failed, setFailed] = useState(false);
   const [registered, setRegistered] = useState(false);
-
-  // TODO: Use React hook here - figure out what this is doing
+  // may need a few more for page behavior
   useEffect(() => {
     console.log(username, password);
     console.log("isLoggedIn state: ", isLoggedIn);
@@ -36,10 +34,7 @@ function Login() {
       });
   }
   async function onRegisterClick() {
-    // TODO: Add better functionality to the register (signup) button
-    // TODO: Remove redundant code
-    // TODO: Review the comment - does it make sense?
-    // check against the data base if this is a valid username / password pair
+    // check agains the data base if this is a valid username / password pair
     await axios
       .post("/login/signup", {
         username,
@@ -59,11 +54,19 @@ function Login() {
       .catch((err) => console.log(err));
   }
 
+  async function googleClick() {
+    try {
+      await fetch("/auth/google");
+    } catch (err) {
+      console.log(`googleclick: ${err}`);
+    }
+  }
+
   // conditional rendering - if failed is true, render a warning popup
   if (!isLoggedIn) {
     return (
       <div>
-        <h1 className='title'>Recommend Me!</h1>
+        <h1 className='title'>🐍 MovieSnek 🐍</h1>
         <div id='logIn' className='textbox'>
           <input
             type='text'
@@ -86,6 +89,9 @@ function Login() {
           <div> </div>
           <button className='buttons' id='signup' onClick={onRegisterClick}>
             Create new account
+          </button>
+          <button className='buttons' id='googleSignup' onClick={googleClick}>
+            Create new account with Google
           </button>
         </div>
       </div>
