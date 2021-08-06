@@ -6,10 +6,34 @@ body {
 }
 
 h3 {
-  margin-left: 5px;
+  margin-top: 0;
+  padding: 2px 16px;
+  color: whitesmoke;
+  font-size: 30px;
+}
+
+.contentContainer {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 2.5em auto;
+}
+
+.header {
+  position: fixed;
+  display: flex;
+  grid-row: 1/2;
+  padding: 5px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 100%;
+  background-color: black;
+  margin: 0px;
+  height: 2.5em;
 }
 .searchBar {
-  margin: 10px;
+  display: flex;
+  float: left;
+  justify-content: center;
 }
 
 #search:focus {
@@ -23,12 +47,26 @@ h3 {
   height: 100%;
   width: 100%;
 }
-
-.textbox {
-  margin-bottom: 10px;
+.textboxHome {
+  display: grid;
+  align-items: center;
+  justify-content: center;
   border-radius: 10px;
+  margin: 5px;
   padding: 10px 20px;
-  line-height: 10px;
+  line-height: 3px;
+  border: 2px solid white;
+  background-color: #232323;
+  color: white;
+}
+.textbox {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px 20px;
+  line-height: 3px;
   border: 2px solid white;
   background-color: #232323;
   color: white;
@@ -51,14 +89,22 @@ h3 {
 .buttons {
   align-self: center;
   border-radius: 10px;
-  border: 4px solid #232323;
+  border: 4px solid white;
   padding: 4px 16px;
   margin-bottom: 10px;
 }
+.buttons:hover {
+  cursor: pointer;
+  background-color: #000;
+  color: white;
+  border: 4px solid whitesmoke;
+}
 
 .movieDisplayContainer {
+  grid-row: 2/3;
   width: 100vw;
   display: grid;
+  margin-top: 50px;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
   justify-items: center;
@@ -67,24 +113,40 @@ h3 {
   row-gap: 1em;
 }
 
+.logOutBtn {
+  justify-content: center;
+  width: 100px;
+  border-radius: 10px;
+  border: 2px solid white;
+  padding: 3px 15px;
+  margin: 5px 30px;
+  color: white;
+  background-color: rgb(43, 42, 42);
+}
+.logOutBtn:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 4px solid whitesmoke;
+}
+
 .movieTile {
-  min-width: 200px;
+  width: 200px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 5.8fr 1fr;
   border-radius: 10px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 }
-
 .likeButton {
   display: absolute;
   width: 25px;
   height: 25px;
-  z-index: 0;
 }
 
 .movieTitle {
   grid-row: 2/3;
+  word-wrap: break-word;
 }
 
 .moviePosterImg {

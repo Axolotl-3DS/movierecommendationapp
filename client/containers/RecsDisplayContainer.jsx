@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
 import MovieTile from "../components/MovieTile";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 function RecsDisplayContainer() {
-
   const [recsList, setRecsList] = useState([]);
   // grab the username from the store
   // then post request to server to grab favs from database
-  const username = useSelector(state => state.user.currentUser);
+  const username = useSelector((state) => state.user.currentUser);
   useEffect(() => {
     try {
-    axios
-    .post("/api/recs", {username: username})
-    .then((res) => {
-      setRecsList(res.data);
-    })
-    .catch((err) => console.log("ERROR: ", err));
-  } catch(err) {
-    console.log(err);
-  }
+      axios
+        .post("/api/recs", { username: username })
+        .then((res) => {
+          setRecsList(res.data);
+        })
+        .catch((err) => console.log("ERROR: ", err));
+    } catch (err) {
+      console.log(err);
+    }
   });
 
   // then I want to display all the favorites;
@@ -35,9 +34,9 @@ function RecsDisplayContainer() {
     }
   };
 
-
   return (
     <div>
+      <p>Your Recommended Movies!</p>
       <div className='movieDisplayContainer'>{renderResults()}</div>
     </div>
   );

@@ -9,6 +9,22 @@ movieController.getUserInput = async (req, res, next) => {
   return next();
 };
 
+movieController.update = (req, res, next) => {
+  // const { username, favs } = req.body;
+  console.log("hit post favs middleware");
+  const username = "test7";
+  const list = ["123", "8739"];
+  User.findOneAndUpdate(
+    { username: username },
+    { favorites: list },
+    { new: true },
+    (err, result) => {
+      console.log(result);
+    }
+  );
+  return next();
+};
+
 movieController.getRecs = async (req, res, next) => {
   // https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=<<api_key>>&language=en-US&page=1
 
@@ -92,7 +108,7 @@ movieController.getSearch = (req, res, next) => {
   searchPromise
     .then((response) => {
       console.log("hits movie api and receives data");
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 10; i++) {
         const { title, id, poster_path, overview } = response.data.results[i];
         searchArray.push({
           id,

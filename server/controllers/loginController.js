@@ -1,5 +1,5 @@
-const User = require('../models/userModel');
-const bcrypt = require('bcryptjs');
+const User = require("../models/userModel");
+const bcrypt = require("bcryptjs");
 const loginController = {};
 
 loginController.createUser = async (req, res, next) => {
@@ -11,7 +11,7 @@ loginController.createUser = async (req, res, next) => {
     return next();
   } catch (err) {
     console.log(`Error on loginController.createUser: ${err}`);
-    res.send('User already exists');
+    res.send("User already exists");
   }
 };
 
@@ -20,17 +20,18 @@ loginController.verifyUser = async (req, res, next) => {
   try {
     await User.findOne({ username }, (err, user) => {
       // console.log('checking password');
+      if (!user) return res.status(200).send("Invalid Username");
       const isValid = bcrypt.compareSync(password, user.password);
-      if (!user || !isValid) return res.send('Invalid Username or Password');
+      if (!user || !isValid) return res.send("Invalid Username or Password");
       else {
         // console.log('password is gooda');
         res.locals.id = user._id;
-        res.cookie('ssid:', user._id);
+        res.cookie("ssid:", user._id);
         return next();
       }
     });
   } catch (err) {
-    res.send('Invalid Username or Password');
+    res.send("Invalid Username or Password");
   }
 };
 
